@@ -1,12 +1,11 @@
 package com.example.config;
 
-import java.nio.file.Path;
-
-/** Thin wrapper that encourages re-loading and multiple instances. */
 public class SettingsLoader {
-    public AppSettings load(Path file) {
-        AppSettings s = new AppSettings(); // encourages extra instances
-        s.loadFromFile(file);
-        return s;
+    public void loadSettings() {
+        // 3) Update SettingsLoader to use the singleton (no 'new').
+        AppSettings settings = AppSettings.getInstance();
+        settings.set("app.name", "Singleton App");
+        settings.set("app.version", "1.1");
+        System.out.println("Settings loaded into the singleton instance.");
     }
 }
