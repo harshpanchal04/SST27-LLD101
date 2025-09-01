@@ -1,17 +1,30 @@
-import com.example.orders.*;
-import java.util.List;
+import com.example.orders.Order;
+import com.example.orders.OrderLine;
+// OrderService and PricingRules are no longer directly used in TryIt
+// as the builder is more direct for this demonstration.
 
 public class TryIt {
     public static void main(String[] args) {
-        OrderLine l1 = new OrderLine("A", 1, 200);
-        OrderLine l2 = new OrderLine("B", 3, 100);
-        Order o = new Order("o2", "a@b.com");
-        o.addLine(l1);
-        o.addLine(l2);
-        o.setDiscountPercent(10);
-        System.out.println("Before: " + o.totalAfterDiscount());
-        l1.setQuantity(999); // demonstrates mutability leak
-        System.out.println("After:  " + o.totalAfterDiscount());
-        System.out.println("=> In the solution, totals remain stable due to defensive copies.");
+        System.out.println("Building orders with the Builder pattern...");
+
+        // The workflow is now to use the builder directly to construct a complete order.
+        Order order1 = new Order.Builder("ORD-001", "Harsh Shukla")
+                .shippingAddress("123 Builder Lane, Codeville")
+                .addOrderLine(new OrderLine("Laptop", 1, 1200))
+                .addOrderLine(new OrderLine("Mouse", 1, 25))
+                .build();
+
+        System.out.println("Successfully created Order 1: " + order1);
+        System.out.println("Items in Order 1: " + order1.getOrderLines().size());
+
+        Order order2 = new Order.Builder("ORD-002", "Jane Developer")
+                .shippingAddress("456 Refactor Road, Design Patterns City")
+                .addOrderLine(new OrderLine("Keyboard", 1, 75))
+                .build();
+
+        System.out.println("Successfully created Order 2: " + order2);
+        System.out.println("Items in Order 2: " + order2.getOrderLines().size());
+
+        System.out.println("Done.");
     }
 }
