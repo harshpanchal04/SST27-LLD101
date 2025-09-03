@@ -11,5 +11,6 @@ public final class EmployeePrinter {
         + ", Last=" + e.getLastName()
         + ", Email=" + e.getEmail());
     }
+    System.out.println("yes");
   }
 }
