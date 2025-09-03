@@ -1,12 +1,24 @@
-// package exercise;
+package exercise;
 
-// public class CSVAdaptor implements Employee{
-//     EmployeeCSV e;
+public class CSVAdaptor implements Employee{
+    private EmployeeCSV employee;
+    String[] CSVData;
+    
+    CSVAdaptor(EmployeeCSV e){
+        this.employee = e;
+        CSVData = employee.tokens();
+    }
 
-//   String getId(){
-
-//   };
-//   String getFirstName();
-//   String getLastName();
-//   String getEmail();
-// }
+    public String getId(){
+        return CSVData[0];
+    };
+    public String getFirstName(){
+        return CSVData[1];
+    };
+    public String getLastName(){
+        return CSVData[2];
+    };
+    public String getEmail(){
+        return CSVData[3];
+    };
+}
