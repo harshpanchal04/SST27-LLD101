@@ -1,4 +1,4 @@
-package beverages_decorator;
+package beverages_decorator_Solution;
 
 public class Cappuccino extends Beverage{
 
